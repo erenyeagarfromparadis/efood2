@@ -15,18 +15,21 @@ class DioClient {
   Dio dio;
   String token;
 
-  DioClient(this.baseUrl,
-      Dio dioC, {
-        this.loggingInterceptor,
-        this.sharedPreferences,
-      }) {
+  DioClient(
+    this.baseUrl,
+    Dio dioC, {
+    this.loggingInterceptor,
+    this.sharedPreferences,
+  }) {
     token = sharedPreferences.getString(AppConstants.TOKEN);
     //print(token);
     dio = dioC ?? Dio();
     dio
       ..options.baseUrl = baseUrl
-      ..options.connectTimeout = ResponsiveHelper.isMobilePhone() ? 30000 : 60 * 30000
-      ..options.receiveTimeout = ResponsiveHelper.isMobilePhone() ? 30000 : 60 * 30000
+      ..options.connectTimeout =
+          ResponsiveHelper.isMobilePhone() ? 30000 : 60 * 30000
+      ..options.receiveTimeout =
+          ResponsiveHelper.isMobilePhone() ? 30000 : 60 * 30000
       ..httpClientAdapter
       ..options.headers = {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -35,7 +38,8 @@ class DioClient {
     dio.interceptors.add(loggingInterceptor);
   }
 
-  Future<Response> get(String uri, {
+  Future<Response> get(
+    String uri, {
     Map<String, dynamic> queryParameters,
     Options options,
     CancelToken cancelToken,
@@ -59,7 +63,8 @@ class DioClient {
     }
   }
 
-  Future<Response> post(String uri, {
+  Future<Response> post(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,
@@ -85,7 +90,8 @@ class DioClient {
     }
   }
 
-  Future<Response> put(String uri, {
+  Future<Response> put(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,
@@ -111,7 +117,8 @@ class DioClient {
     }
   }
 
-  Future<Response> delete(String uri, {
+  Future<Response> delete(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,
